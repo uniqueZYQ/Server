@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="myServlet">
+        <property name="context-root" value="myServlet"/>
+        <property name="java-output-path" value="/myServlet/build/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,44 @@
+package myServlet;
+
+public class CommonResponse {
+	private int id;
+	private String pwd;
+	private String nickname;
+	private String realname;
+	private String stdid;
+	
+	public void setId(int id) {
+		this.id=id;
+	}
+	public int getId() {
+		return id;
+	}
+	
+	public void setPwd(String pwd) {
+		this.pwd=pwd;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	
+	public void setRealname(String realname) {
+		this.realname=realname;
+	}
+	public String getRealname() {
+		return realname;
+	}
+	
+	public void setStdid(String stdid) {
+		this.stdid=stdid;
+	}
+	public String getStdid() {
+		return stdid;
+	}
+}
