@@ -2,6 +2,7 @@ package myServlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,17 +36,25 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nickname = request.getParameter("nickname"); // 从 request 中获取名为 account 的参数的值
-		String pwd = request.getParameter("pwd"); // 从 request 中获取名为 password 的参数的值
+		String nickname = request.getParameter("nickname"); 
+		String pwd = request.getParameter("pwd"); 
 		String realname = request.getParameter("realname");
 		String stdid = request.getParameter("stdid");
-
-		CommonResponse res=new CommonResponse();
+	
+		String picture1= request.getParameter("picture");
+		byte[] picture=picture1.getBytes();
+		/*byte[] picture=request.getInputStream().readAllBytes();
+		String n=new String(picture);
+		getServletContext().log("n="+n);*/
 		
+		CommonResponse res=new CommonResponse();
 		try {
 			Connection connect = DBUtil.getConnect();
 			Statement statement = (Statement) connect.createStatement(); // Statement可以理解为数据库操作实例，对数据库的所有操作都通过它来实现
 			ResultSet result;
+			/*Blob blob=connect.createBlob();
+			int v=blob.setBytes(1, picture);
+			getServletContext().log("v="+String.valueOf(v));*/
 			
 			String sqlQuery = "select * from " + DBUtil.TABLE_USER + " where stdid='" + stdid + "'";
 			
@@ -55,10 +64,18 @@ public class RegisterServlet extends HttpServlet {
 				res.setCode(402);
 				res.setResponse("该学号已被注册，请直接登录") ;
 				res.setId(result.getInt("id"));
-			} else { // 不存在
-				String sqlInsertPass = "insert into " + DBUtil.TABLE_USER + "(stdid,nickname,pwd,realname) values('"+stdid+"','"+nickname+"','"+pwd+"','"+realname+"')";
-				// 更新类操作返回一个int类型的值，代表该操作影响到的行数
-				int row1 = statement.executeUpdate(sqlInsertPass); // 插入帐号密码
+			} else { // 不存在	
+				String sql = "INSERT INTO " + DBUtil.TABLE_USER + " (stdid,nickname,pwd,realname,picture) VALUES (?,?,?,?,?)";
+				PreparedStatement ps = connect.prepareStatement(sql);
+				ps.setString(1, stdid);
+				ps.setString(2, nickname);
+				ps.setString(3, pwd);
+				ps.setString(4, realname);
+				ps.setBytes(5, picture);
+				int row1 = ps.executeUpdate();
+				/*String m=new String(picture);
+				getServletContext().log("do it picture="+m+"\npicture1="+picture1);*/
+	
 				if(row1 == 1){
 					String sqlQueryId = "select stdid,id from " + DBUtil.TABLE_USER + " where stdid='" + stdid + "'";
 					ResultSet result2 = statement.executeQuery(sqlQueryId); // 查询新增记录的id
@@ -81,6 +98,7 @@ public class RegisterServlet extends HttpServlet {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			res.setResponse("操作失败，请稍后再试");
 		}
 		
 		String resStr = JSONObject.fromObject(res).toString();
