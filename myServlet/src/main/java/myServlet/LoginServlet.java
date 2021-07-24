@@ -39,7 +39,8 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
 		String stdid = request.getParameter("stdid"); 
 		String pwd = request.getParameter("pwd"); 
         
-        String sql = "select * from " + DBUtil.TABLE_USER + " where stdid='" + stdid + "'"+"and pwd="+pwd;
+        String sql = "select * from " + DBUtil.TABLE_USER + " where stdid= '" + stdid + "'"+" and pwd="+"'"+pwd+"'";
+       
         CommonResponse res=new CommonResponse();
         try {
 			Connection connect = DBUtil.getConnect();
@@ -65,6 +66,8 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			res.setCode(402);
+			res.setResponse("登录失败");
 		}
 		 String resStr = JSONObject.fromObject(res).toString();
 		 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密

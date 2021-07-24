@@ -2,4 +2,15 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="net.sf.json.JSONObject"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
+    <fullyQualifiedTypeName name="org.apache.commons.logging.Log"/>
+    <fullyQualifiedTypeName name="com.sun.tools.javac.util.Log"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.log.Log"/>
+    <fullyQualifiedTypeName name="javax.sound.sampled.AudioFormat.Encoding"/>
+    <fullyQualifiedTypeName name="jdk.jfr.internal.consumer.StringParser.Encoding"/>
+    <fullyQualifiedTypeName name="com.sun.tools.javac.util.Convert"/>
+    <fullyQualifiedTypeName name="org.apache.commons.beanutils.converters.ByteArrayConverter"/>
+    <fullyQualifiedTypeName name="org.apache.commons.beanutils.Converter"/>
+    <fullyQualifiedTypeName name="java.sql.Blob"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 </qualifiedTypeNameHistroy>

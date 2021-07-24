@@ -9,7 +9,7 @@ public class CommonResponse {
 	private String nickname;
 	private String realname;
 	private String stdid;
-	private byte[] picture; 
+	private String picture;
 	
 	public void setCode(int code) {
 		this.code=code;
@@ -60,10 +60,10 @@ public class CommonResponse {
 		return stdid;
 	}
 	
-	public void setPicture(byte[] picture) {
-		this.picture=picture;e
+	public void setPicture(String picture) {
+		this.picture=picture;
 	}
-	public byte[] getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 }

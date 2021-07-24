@@ -40,26 +40,17 @@ public class RegisterServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd"); 
 		String realname = request.getParameter("realname");
 		String stdid = request.getParameter("stdid");
-	
-		String picture1= request.getParameter("picture");
-		byte[] picture=picture1.getBytes();
-		/*byte[] picture=request.getInputStream().readAllBytes();
-		String n=new String(picture);
-		getServletContext().log("n="+n);*/
+		String picture = request.getParameter("picture");
 		
 		CommonResponse res=new CommonResponse();
 		try {
 			Connection connect = DBUtil.getConnect();
 			Statement statement = (Statement) connect.createStatement(); // Statement可以理解为数据库操作实例，对数据库的所有操作都通过它来实现
 			ResultSet result;
-			/*Blob blob=connect.createBlob();
-			int v=blob.setBytes(1, picture);
-			getServletContext().log("v="+String.valueOf(v));*/
 			
 			String sqlQuery = "select * from " + DBUtil.TABLE_USER + " where stdid='" + stdid + "'";
 			
-			// 查询类操作返回一个ResultSet集合，没有查到结果时ResultSet的长度为0
-			result = statement.executeQuery(sqlQuery); // 先查询同样的账号（比如手机号）是否存在
+			result = statement.executeQuery(sqlQuery); 
 			if(result.next()){ // 已存在
 				res.setCode(402);
 				res.setResponse("该学号已被注册，请直接登录") ;
@@ -71,10 +62,8 @@ public class RegisterServlet extends HttpServlet {
 				ps.setString(2, nickname);
 				ps.setString(3, pwd);
 				ps.setString(4, realname);
-				ps.setBytes(5, picture);
+				ps.setString(5, picture);
 				int row1 = ps.executeUpdate();
-				/*String m=new String(picture);
-				getServletContext().log("do it picture="+m+"\npicture1="+picture1);*/
 	
 				if(row1 == 1){
 					String sqlQueryId = "select stdid,id from " + DBUtil.TABLE_USER + " where stdid='" + stdid + "'";
@@ -98,6 +87,8 @@ public class RegisterServlet extends HttpServlet {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			res.setId(0);
+			res.setCode(404);
 			res.setResponse("操作失败，请稍后再试");
 		}
 		
