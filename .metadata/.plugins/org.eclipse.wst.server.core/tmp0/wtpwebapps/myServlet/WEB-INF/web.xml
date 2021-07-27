@@ -69,4 +69,14 @@
     <servlet-name>renewUserPictureServlet</servlet-name>
     <url-pattern>/renewUserPictureServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PublishInfoServlet</display-name>
+    <servlet-name>PublishInfoServlet</servlet-name>
+    <servlet-class>myServlet.PublishInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PublishInfoServlet</servlet-name>
+    <url-pattern>/PublishInfoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

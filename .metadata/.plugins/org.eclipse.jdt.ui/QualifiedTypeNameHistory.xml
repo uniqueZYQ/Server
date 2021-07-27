@@ -13,4 +13,7 @@
     <fullyQualifiedTypeName name="org.apache.commons.beanutils.Converter"/>
     <fullyQualifiedTypeName name="java.sql.Blob"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.ServletInputStream"/>
+    <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+    <fullyQualifiedTypeName name="java.util.Base64"/>
 </qualifiedTypeNameHistroy>
