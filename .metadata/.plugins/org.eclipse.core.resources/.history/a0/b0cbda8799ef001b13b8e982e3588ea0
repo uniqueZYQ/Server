@@ -9,7 +9,7 @@ public class DBUtil {
 	// table
 		public static final String TABLE_USER = "user";
 		public static final String TABLE_INFO = "info";
-		public static final String TABLE_PICTURE = "picture";
+		//public static final String TABLE_USERINFO = "table_user_info";
 	 
 		// connect to MySql database
 		public static Connection getConnect() {

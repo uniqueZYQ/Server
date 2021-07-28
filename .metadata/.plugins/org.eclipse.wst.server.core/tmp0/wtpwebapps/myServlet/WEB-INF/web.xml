@@ -79,4 +79,14 @@
     <servlet-name>PublishInfoServlet</servlet-name>
     <url-pattern>/PublishInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UploadPictureServlet</display-name>
+    <servlet-name>UploadPictureServlet</servlet-name>
+    <servlet-class>myServlet.UploadPictureServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadPictureServlet</servlet-name>
+    <url-pattern>/UploadPictureServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
