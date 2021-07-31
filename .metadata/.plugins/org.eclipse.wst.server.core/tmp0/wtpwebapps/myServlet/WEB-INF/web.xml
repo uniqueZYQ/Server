@@ -89,4 +89,14 @@
     <servlet-name>UploadPictureServlet</servlet-name>
     <url-pattern>/UploadPictureServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QueryMyInfoServlet</display-name>
+    <servlet-name>QueryMyInfoServlet</servlet-name>
+    <servlet-class>myServlet.QueryMyInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryMyInfoServlet</servlet-name>
+    <url-pattern>/QueryMyInfoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

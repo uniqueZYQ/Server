@@ -16,4 +16,7 @@
     <fullyQualifiedTypeName name="jakarta.servlet.ServletInputStream"/>
     <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
     <fullyQualifiedTypeName name="java.util.Base64"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="net.sf.json.JSONArray"/>
 </qualifiedTypeNameHistroy>
