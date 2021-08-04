@@ -40,8 +40,8 @@ public class QueryMyInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		String type = request.getParameter("type");
-		if(type.equals("0")) {
+		String detail = request.getParameter("detail");
+		if(detail.equals("0")) {
 			String sql = "select * from " + DBUtil.TABLE_INFO + " where owner_id= '" + id + "' order by send_date desc";
 		       
 	        List<InfoResponse> res=new ArrayList<InfoResponse>();
@@ -97,7 +97,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
-		else if(type.equals("1")){
+		else {
 			String sql="select * from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";	  
 			InfoResponse info=new InfoResponse();
 			try {
@@ -141,32 +141,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
-		else {
-			String sql="delete from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";
-			InfoResponse info=new InfoResponse();
-			try {
-				Connection connect = DBUtil.getConnect();
-				Statement statement = (Statement) connect.createStatement(); 
-				statement.execute(sql);
-				String new_sql="select * from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";
-				ResultSet result;
-				result = statement.executeQuery(new_sql);
-				if(result.next()){ // 不成功
-					info.setCode(401);
-					info.setResponse("操作异常，请稍后再试");
-				} else { // 成功
-					info.setCode(101);
-					info.setResponse("删除成功！");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				info.setCode(402);
-				info.setResponse("操作失败，请检查网络连接");
-			}
-			 String resStr = JSONObject.fromObject(info).toString();
-			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
-		        response.getWriter().append(resStr).flush();
-		}
+
 	}
 
 }

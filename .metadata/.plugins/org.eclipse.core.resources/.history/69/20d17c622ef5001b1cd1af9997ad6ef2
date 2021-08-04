@@ -147,16 +147,13 @@ public class QueryMyInfoServlet extends HttpServlet {
 			try {
 				Connection connect = DBUtil.getConnect();
 				Statement statement = (Statement) connect.createStatement(); 
-				statement.execute(sql);
-				String new_sql="select * from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";
-				ResultSet result;
-				result = statement.executeQuery(new_sql);
-				if(result.next()){ // 不成功
-					info.setCode(401);
-					info.setResponse("操作异常，请稍后再试");
-				} else { // 成功
+				
+				if(statement.execute(sql)){ // 成功
 					info.setCode(101);
 					info.setResponse("删除成功！");
+				} else { // 不存在
+					info.setCode(401);
+					info.setResponse("操作异常，请稍后再试");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
