@@ -99,14 +99,4 @@
     <servlet-name>QueryMyInfoServlet</servlet-name>
     <url-pattern>/QueryMyInfoServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>updateMyInfoServlet</display-name>
-    <servlet-name>updateMyInfoServlet</servlet-name>
-    <servlet-class>myServlet.updateMyInfoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>updateMyInfoServlet</servlet-name>
-    <url-pattern>/updateMyInfoServlet</url-pattern>
-  </servlet-mapping>
 </web-app>
