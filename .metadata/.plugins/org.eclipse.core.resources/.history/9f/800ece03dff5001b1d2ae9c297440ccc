@@ -210,8 +210,8 @@ public class QueryMyInfoServlet extends HttpServlet {
 						Statement statement1 = (Statement) connect1.createStatement(); 
 						result1 = statement1.executeQuery(new_sql);
 						if(result1.next()) {
-							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							res.get(i).setOwner_picture(result1.getString("picture"));
+							res.get(i).setOwnerNickname(result1.getString("nickname"));
+							res.get(i).setOwnerPicture(result1.getString("picture"));
 							res.get(i).setResponse("获取成功");
 							res.get(i).setCode(101);
 						}

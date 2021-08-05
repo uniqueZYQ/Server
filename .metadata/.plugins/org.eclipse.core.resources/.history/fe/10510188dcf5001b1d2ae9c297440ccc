@@ -23,25 +23,6 @@ public class InfoResponse {
     private int picture3;
     private int picture4;
     private String placeId;
-    
-    private String owner_picture;
-    private String owner_nickname;
-    
-    public String getOwner_picture() {
-    	return owner_picture;
-    }
-    
-    public void setOwner_picture(String owner_picture) {
-    	this.owner_picture=owner_picture;
-    }
-    
-    public String getOwner_nickname() {
-    	return owner_nickname;
-    }
-    
-    public void setOwner_nickname(String owner_nickname) {
-    	this.owner_nickname=owner_nickname;
-    }
 
     public int getCode() {
         return code;

@@ -52,7 +52,7 @@ public class renewUserServlet extends HttpServlet {
 			result = statement.executeQuery(sql);
 			if(result.next()){ // ∆•≈‰≥…π¶
 				String new_sql="update "+DBUtil.TABLE_USER+" set pwd='"+pwd+"' , nickname='"+nickname+"' where id='"+id+"'";
-				getServletContext().log(new_sql);
+			
 				int row1=statement.executeUpdate(new_sql);
 				if(row1==1) {
 					String sqlQueryId = "select id from " + DBUtil.TABLE_USER + " where id='" + id + "' and pwd='"+pwd+"' and nickname='"+nickname+"'";

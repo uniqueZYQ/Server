@@ -36,8 +36,7 @@ public class QueryUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String need_picture = request.getParameter("need_picture");
+		String id = request.getParameter("id"); 
 		
 		CommonResponse res=new CommonResponse();
 		try {
@@ -61,8 +60,7 @@ public class QueryUserServlet extends HttpServlet {
 				//res.setRealPicture(FileBuf);
 				res.setRealname(result.getString("realname"));
 				res.setStdid(result.getString("stdid"));
-				if(need_picture.equals("1"))
-					res.setPicture(result.getString("picture"));
+				res.setPicture(result.getString("picture"));
 			} else { // 不存在	
 				res.setCode(401);
 				res.setResponse("用户信息获取失败，请稍后再试");

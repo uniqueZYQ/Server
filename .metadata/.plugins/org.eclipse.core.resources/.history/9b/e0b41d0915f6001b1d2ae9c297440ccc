@@ -211,7 +211,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 						result1 = statement1.executeQuery(new_sql);
 						if(result1.next()) {
 							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							res.get(i).setOwner_picture(result1.getString("picture"));
+							//res.get(i).setOwner_picture(result1.getString("picture"));
 							res.get(i).setResponse("获取成功");
 							res.get(i).setCode(101);
 						}

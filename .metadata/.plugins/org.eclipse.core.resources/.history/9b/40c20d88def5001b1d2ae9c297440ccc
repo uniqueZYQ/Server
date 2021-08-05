@@ -206,12 +206,10 @@ public class QueryMyInfoServlet extends HttpServlet {
 						String owner_id=String.valueOf(result.getInt("owner_id"));
 						String new_sql="select nickname,picture from user where id='"+owner_id+"'";
 						ResultSet result1;
-						Connection connect1 = DBUtil.getConnect();
-						Statement statement1 = (Statement) connect1.createStatement(); 
-						result1 = statement1.executeQuery(new_sql);
+						result1 = statement.executeQuery(new_sql);
 						if(result1.next()) {
-							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							res.get(i).setOwner_picture(result1.getString("picture"));
+							res.get(i).setOwnerNickname(result1.getString("nickname"));
+							res.get(i).setOwnerPicture(result1.getString("picture"));
 							res.get(i).setResponse("获取成功");
 							res.get(i).setCode(101);
 						}

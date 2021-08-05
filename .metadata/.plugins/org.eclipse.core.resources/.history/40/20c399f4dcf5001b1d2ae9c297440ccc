@@ -185,6 +185,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 						InfoResponse e=new InfoResponse();
 						res.add(e);
 						res.get(i).setAnswered(result.getInt("answered"));
+						res.get(i).setCode(101);
 						res.get(i).setDate(result.getString("date"));
 						res.get(i).setDetail(result.getString("detail"));
 						res.get(i).setFd_form(result.getInt("fd_form"));
@@ -200,24 +201,16 @@ public class QueryMyInfoServlet extends HttpServlet {
 						res.get(i).setPlace(result.getString("place"));
 						res.get(i).setPlaceId(result.getString("placeId"));
 						res.get(i).setPrice(result.getDouble("price"));
+						res.get(i).setResponse("获取成功");
 						res.get(i).setReward(result.getDouble("reward"));
 						res.get(i).setScore(result.getInt("score"));
 						res.get(i).setSend_date(result.getString("send_date"));
 						String owner_id=String.valueOf(result.getInt("owner_id"));
-						String new_sql="select nickname,picture from user where id='"+owner_id+"'";
+						String new_sql="selcet nickname,picture from user where id='"+owner_id+"'";
 						ResultSet result1;
-						Connection connect1 = DBUtil.getConnect();
-						Statement statement1 = (Statement) connect1.createStatement(); 
-						result1 = statement1.executeQuery(new_sql);
+						result1 = statement.executeQuery(new_sql);
 						if(result1.next()) {
-							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							res.get(i).setOwner_picture(result1.getString("picture"));
-							res.get(i).setResponse("获取成功");
-							res.get(i).setCode(101);
-						}
-						else {
-							res.get(i).setResponse("用户信息获取失败");
-							res.get(i).setCode(403);
+							res.get(i).set
 						}
 						i++;
 					}

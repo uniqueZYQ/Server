@@ -27,19 +27,19 @@ public class InfoResponse {
     private String owner_picture;
     private String owner_nickname;
     
-    public String getOwner_picture() {
+    public String getOwnerPicture() {
     	return owner_picture;
     }
     
-    public void setOwner_picture(String owner_picture) {
+    public void setOwnerPicture(String owner_picture) {
     	this.owner_picture=owner_picture;
     }
     
-    public String getOwner_nickname() {
+    public String getOwnerNickname() {
     	return owner_nickname;
     }
     
-    public void setOwner_nickname(String owner_nickname) {
+    public void setOwnerNickname(String owner_nickname) {
     	this.owner_nickname=owner_nickname;
     }
 
