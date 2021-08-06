@@ -271,7 +271,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 				if(result.next()) {
 					String sql_0="update info set answered='1' where id= '" + id + "'";
 					Statement statement0 = (Statement) connect.createStatement(); 
-					statement0.executeUpdate(sql_0);
+					statement0.executeQuery(sql_0);
 					String sql_1="select * from info where answered='1' and id= '" + id + "'";
 					Statement statement1 = (Statement) connect.createStatement(); 
 					ResultSet result1=statement1.executeQuery(sql_1);

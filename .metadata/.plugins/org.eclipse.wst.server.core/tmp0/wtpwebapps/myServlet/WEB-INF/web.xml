@@ -109,4 +109,14 @@
     <servlet-name>updateMyInfoServlet</servlet-name>
     <url-pattern>/updateMyInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CachedPictureServlet</display-name>
+    <servlet-name>CachedPictureServlet</servlet-name>
+    <servlet-class>myServlet.CachedPictureServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CachedPictureServlet</servlet-name>
+    <url-pattern>/CachedPictureServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

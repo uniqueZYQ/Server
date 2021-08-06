@@ -40,7 +40,6 @@ public class QueryMyInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
-		boolean cached=false; 
 		if(type.equals("0")) {
 			String id = request.getParameter("id");
 			String sql = "select * from " + DBUtil.TABLE_INFO + " where owner_id= '" + id + "' order by send_date desc";
@@ -170,7 +169,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
-		else if(type.equals("3")){
+		else {
 			String kwd = request.getParameter("kwd");
 			String sql = "select * from " + DBUtil.TABLE_INFO + " where detail like '%"+kwd+"%' or lesson like '%"+kwd+"%' order by send_date desc";
 			getServletContext().log(sql);
@@ -205,34 +204,16 @@ public class QueryMyInfoServlet extends HttpServlet {
 						res.get(i).setScore(result.getInt("score"));
 						res.get(i).setSend_date(result.getString("send_date"));
 						String owner_id=String.valueOf(result.getInt("owner_id"));
-						
-						String sql_0="select * from cached_picture where user_code='"+owner_id+"'";
-						ResultSet result0;
-						Connection connect0 = DBUtil.getConnect();
-						Statement statement0 = (Statement) connect0.createStatement();
-						result0 = statement0.executeQuery(sql_0);
-						if(result0.next()) {
-							cached=true;
-						}
-						
-						String sql_1="select nickname,picture from user where id='"+owner_id+"'";
+						String new_sql="select nickname,picture from user where id='"+owner_id+"'";
 						ResultSet result1;
 						Connection connect1 = DBUtil.getConnect();
 						Statement statement1 = (Statement) connect1.createStatement(); 
-						result1 = statement1.executeQuery(sql_1);
+						result1 = statement1.executeQuery(new_sql);
 						if(result1.next()) {
 							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							if(cached==false) {
-								res.get(i).setOwner_picture(result1.getString("picture"));
-								res.get(i).setResponse("获取成功");
-								res.get(i).setCode(101);
-							}
-							else {
-								//res.get(i).setOwner_picture(result1.getString("picture"));
-								res.get(i).setResponse("获取成功");
-								res.get(i).setCode(103);
-							}
-							
+							res.get(i).setOwner_picture(result1.getString("picture"));
+							res.get(i).setResponse("获取成功");
+							res.get(i).setCode(101);
 						}
 						else {
 							res.get(i).setResponse("用户信息获取失败");
@@ -256,44 +237,6 @@ public class QueryMyInfoServlet extends HttpServlet {
 				res.get(0).setResponse("数据请求失败，请检查网络连接");
 			}
 			 String resStr = JSONArray.fromObject(res).toString();
-			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
-		        response.getWriter().append(resStr).flush();
-		}
-		else if(type.equals("4")) {
-			String id=request.getParameter("id");
-			String sql="select * from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";
-			CommonResponse info=new CommonResponse();
-			try {
-				Connection connect = DBUtil.getConnect();
-				Statement statement = (Statement) connect.createStatement(); 
-				ResultSet result;
-				result=statement.executeQuery(sql);
-				if(result.next()) {
-					String sql_0="update info set answered='1' where id= '" + id + "'";
-					Statement statement0 = (Statement) connect.createStatement(); 
-					statement0.executeUpdate(sql_0);
-					String sql_1="select * from info where answered='1' and id= '" + id + "'";
-					Statement statement1 = (Statement) connect.createStatement(); 
-					ResultSet result1=statement1.executeQuery(sql_1);
-					if(result1.next()) {
-						info.setCode(101);
-						info.setResponse("响应成功");
-					}
-					else {
-						info.setCode(403);
-						info.setResponse("操作失败，请检查网络连接");
-					}
-				}
-				else {
-					info.setCode(401);
-					info.setResponse("信息已被删除，响应失败");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				info.setCode(402);
-				info.setResponse("操作失败，请检查网络连接");
-			}
-			 String resStr = JSONObject.fromObject(info).toString();
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
