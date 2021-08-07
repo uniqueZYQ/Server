@@ -119,4 +119,14 @@
     <servlet-name>CachedPictureServlet</servlet-name>
     <url-pattern>/CachedPictureServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MsgServlet</display-name>
+    <servlet-name>MsgServlet</servlet-name>
+    <servlet-class>myServlet.MsgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MsgServlet</servlet-name>
+    <url-pattern>/MsgServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
