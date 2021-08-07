@@ -2,6 +2,8 @@
 
 使用Mysql+Navicat+Tomcat+Eclipse for JavaEE进行开发，服务器为华为云服务器。
 
+开发者：city ghost
+
 更新记录:
 
   2021-7-20
