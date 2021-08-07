@@ -1,8 +1,8 @@
-此项目为WHU信息平台的服务器端，
+此项目为WHU信息平台的服务器端
 
 使用Mysql+Navicat+Tomcat+Eclipse for JavaEE进行开发，服务器为华为云服务器。
 
-工作日志:
+更新记录:
 
   2021-7-20
   
