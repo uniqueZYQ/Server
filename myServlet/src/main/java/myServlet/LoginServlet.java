@@ -38,7 +38,7 @@ public class LoginServlet extends jakarta.servlet.http.HttpServlet {
 	protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 		String stdid = request.getParameter("stdid"); 
 		String pwd = request.getParameter("pwd"); 
-        
+		
         String sql = "select * from " + DBUtil.TABLE_USER + " where stdid= '" + stdid + "'"+" and pwd="+"'"+pwd+"'";
        
         CommonResponse res=new CommonResponse();

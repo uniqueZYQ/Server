@@ -1,25 +1,16 @@
 package myServlet;
 
-public class MsgResponse {
-	private int code;
-	private String response;
-	
+public class Msg {
 	private int id;
+    public static final int TYPE_RECEIVED = 0;
+    public static final int TYPE_SENT = 1;
     private String content;
     private int sub_id;
     private int obj_id;
     private String time;
     private int picture;
     private int recalled;
-    private String oppo_nickname;
     
-    public String getOppo_nickname() {
-    	return oppo_nickname;
-    }
-    public void setOppo_nickname(String oppo_nickname) {
-    	this.oppo_nickname=oppo_nickname;
-    }
-
     public int getId(){
         return id;
     }
@@ -38,18 +29,7 @@ public class MsgResponse {
     public String getContent(){
         return content;
     }
-    public int getCode() {
-    	return code;
-    }
-    public void setCode(int code) {
-    	this.code=code;
-    }
-    public void setResponse(String response) {
-    	this.response=response;
-    }
-    public String getResponse() {
-    	return response;
-    }
+   
 
     public int getPicture(){return picture;}
     public int getRecalled(){
@@ -68,7 +48,7 @@ public class MsgResponse {
     public void setTime(String time) {
         this.time = time;
     }
-   
+
     public void setPicture(int picture) {
         this.picture = picture;
     }

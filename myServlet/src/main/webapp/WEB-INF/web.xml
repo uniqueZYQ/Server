@@ -129,4 +129,14 @@
     <servlet-name>MsgServlet</servlet-name>
     <url-pattern>/MsgServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LastServlet</display-name>
+    <servlet-name>LastServlet</servlet-name>
+    <servlet-class>myServlet.LastServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LastServlet</servlet-name>
+    <url-pattern>/LastServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

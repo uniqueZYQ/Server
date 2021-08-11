@@ -30,15 +30,26 @@ public class UploadPictureServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String download = request.getParameter("download");
-		if(download.equals("0")) {
+		
+		String download = new String();
+		download=request.getParameter("download");
+		if(download==null) {
+			CommonResponse res=new CommonResponse();
+			res.setId(0);
+			res.setCode(403);
+			res.setResponse("图片过大，请更换其他图片");
+			String resStr = JSONObject.fromObject(res).toString();
+			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
+		        response.getWriter().append(resStr).flush();
+		}
+		else if(download.equals("0")) {
 			String picture = request.getParameter("picture");
 			
 			CommonResponse res=new CommonResponse();
@@ -91,9 +102,9 @@ public class UploadPictureServlet extends HttpServlet {
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
-		else {
+		else if(download.equals("1")){
 			String id = request.getParameter("id");
-			
+		
 			CommonResponse res=new CommonResponse();
 			try {
 				Connection connect = DBUtil.getConnect();
@@ -121,5 +132,6 @@ public class UploadPictureServlet extends HttpServlet {
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
 		        response.getWriter().append(resStr).flush();
 		}
+	
 	}
 }

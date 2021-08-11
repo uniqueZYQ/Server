@@ -40,7 +40,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type = request.getParameter("type");
-		boolean cached=false; 
+		
 		if(type.equals("0")) {
 			String id = request.getParameter("id");
 			String sql = "select * from " + DBUtil.TABLE_INFO + " where owner_id= '" + id + "' order by send_date desc";
@@ -206,15 +206,6 @@ public class QueryMyInfoServlet extends HttpServlet {
 						res.get(i).setSend_date(result.getString("send_date"));
 						String owner_id=String.valueOf(result.getInt("owner_id"));
 						
-						String sql_0="select * from cached_picture where user_code='"+owner_id+"'";
-						ResultSet result0;
-						Connection connect0 = DBUtil.getConnect();
-						Statement statement0 = (Statement) connect0.createStatement();
-						result0 = statement0.executeQuery(sql_0);
-						if(result0.next()) {
-							cached=true;
-						}
-						
 						String sql_1="select nickname,picture from user where id='"+owner_id+"'";
 						ResultSet result1;
 						Connection connect1 = DBUtil.getConnect();
@@ -222,17 +213,9 @@ public class QueryMyInfoServlet extends HttpServlet {
 						result1 = statement1.executeQuery(sql_1);
 						if(result1.next()) {
 							res.get(i).setOwner_nickname(result1.getString("nickname"));
-							if(cached==false) {
-								res.get(i).setOwner_picture(result1.getString("picture"));
-								res.get(i).setResponse("获取成功");
-								res.get(i).setCode(101);
-							}
-							else {
-								//res.get(i).setOwner_picture(result1.getString("picture"));
-								res.get(i).setResponse("获取成功");
-								res.get(i).setCode(103);
-							}
-							
+							//res.get(i).setOwner_picture(result1.getString("picture"));
+							res.get(i).setResponse("获取成功");
+							res.get(i).setCode(103);
 						}
 						else {
 							res.get(i).setResponse("用户信息获取失败");

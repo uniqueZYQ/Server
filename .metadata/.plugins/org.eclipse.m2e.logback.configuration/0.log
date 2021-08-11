@@ -692,3 +692,6 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact javax.websock
 2021-08-07 21:05:41,385 [Worker-132: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrator\eclipse-workspace\IMserver\src\main\resources
 2021-08-07 21:05:41,389 [Worker-132: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-08-07 21:05:41,389 [Worker-132: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Administrator\eclipse-workspace\IMserver\src\test\resources
+2021-08-10 20:39:56,969 [Worker-401: Debug Source Lookup] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-servlet-api/10.0.8/tomcat-servlet-api-10.0.8-sources.jar
+2021-08-10 20:40:01,436 [Worker-401: Debug Source Lookup] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-servlet-api/10.0.8/tomcat-servlet-api-10.0.8-sources.jar
+2021-08-10 22:00:49,085 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
