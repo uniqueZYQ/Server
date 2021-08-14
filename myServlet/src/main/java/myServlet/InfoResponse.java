@@ -23,9 +23,18 @@ public class InfoResponse {
     private int picture3;
     private int picture4;
     private String placeId;
+    private int views;
     
     private String owner_picture;
     private String owner_nickname;
+    
+    public int getViews() {
+    	return views;
+    }
+    
+    public void setViews(int views) {
+    	this.views=views;
+    }
     
     public String getOwner_picture() {
     	return owner_picture;

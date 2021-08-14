@@ -203,6 +203,7 @@ public class QueryMyInfoServlet extends HttpServlet {
 						res.get(i).setPrice(result.getDouble("price"));
 						res.get(i).setReward(result.getDouble("reward"));
 						res.get(i).setScore(result.getInt("score"));
+						res.get(i).setViews(result.getInt("views"));
 						res.get(i).setSend_date(result.getString("send_date"));
 						String owner_id=String.valueOf(result.getInt("owner_id"));
 						
@@ -275,6 +276,62 @@ public class QueryMyInfoServlet extends HttpServlet {
 				e.printStackTrace();
 				info.setCode(402);
 				info.setResponse("操作失败，请检查网络连接");
+			}
+			 String resStr = JSONObject.fromObject(info).toString();
+			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
+		        response.getWriter().append(resStr).flush();
+		}
+		else if(type.equals("5")){
+			String id = request.getParameter("id");
+			String sql="select * from " + DBUtil.TABLE_INFO + " where id= '" + id + "'";	  
+			InfoResponse info=new InfoResponse();
+			try {
+				Connection connect = DBUtil.getConnect();
+				Statement statement = (Statement) connect.createStatement(); 
+				ResultSet result;
+				result = statement.executeQuery(sql);
+				if(result.next()){ // 匹配成功
+					info.setAnswered(result.getInt("answered"));
+					info.setDate(result.getString("date"));
+					info.setDetail(result.getString("detail"));
+					info.setFd_form(result.getInt("fd_form"));
+					info.setForm(result.getInt("form"));
+					info.setHelp_form(result.getInt("help_form"));
+					info.setId(result.getInt("id"));
+					info.setLesson(result.getString("lesson"));
+					info.setOwner_id(result.getInt("owner_id"));
+					info.setPicture1(result.getInt("picture1"));
+					info.setPicture2(result.getInt("picture2"));
+					info.setPicture3(result.getInt("picture3"));
+					info.setPicture4(result.getInt("picture4"));
+					info.setPlace(result.getString("place"));
+					info.setPlaceId(result.getString("placeId"));
+					info.setPrice(result.getDouble("price"));
+					info.setResponse("获取成功");
+					info.setReward(result.getDouble("reward"));
+					info.setScore(result.getInt("score"));
+					info.setSend_date(result.getString("send_date"));
+					int v=result.getInt("views");
+					String new_sql="update info set views='"+String.valueOf(v+1)+"' where id='"+id+"'";
+					Connection connect1 = DBUtil.getConnect();
+					Statement statement1 = (Statement) connect1.createStatement(); 
+					int n = statement1.executeUpdate(new_sql);
+					if(n==1) {
+						info.setCode(101);
+						info.setResponse("获取成功");
+					}
+					else {
+						info.setCode(403);
+						info.setResponse("操作失败");
+					}
+				} else { // 不存在
+					info.setCode(401);
+					info.setResponse("数据状态异常，请稍后再试");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				info.setCode(402);
+				info.setResponse("数据请求失败，请检查网络连接");
 			}
 			 String resStr = JSONObject.fromObject(info).toString();
 			 //response.getWriter().append(EncryptUtil.getEDSEncryptStr(resStr)); // 可以对字符串进行加密操作，相应的到了客户端就需要解密
