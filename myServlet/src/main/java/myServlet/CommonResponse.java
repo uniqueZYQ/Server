@@ -10,6 +10,15 @@ public class CommonResponse {
 	private String realname;
 	private String stdid;
 	private String picture;
+	private int picture_version;
+	
+	public void setPicture_version(int picture_version) {
+		this.picture_version=picture_version;
+	}
+	
+	public int getPicture_version() {
+		return picture_version;
+	}
 	
 	public void setCode(int code) {
 		this.code=code;

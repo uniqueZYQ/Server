@@ -49,9 +49,11 @@ public class renewUserPictureServlet extends HttpServlet {
 			
 			result = statement.executeQuery(sqlQuery); 
 			if(result.next()){ // 已存在
-				String sql="update "+ DBUtil.TABLE_USER +" set picture='"+picture+"' where id='"+id+"'";
+				int v=result.getInt("picture_version");
+				String sql="update "+ DBUtil.TABLE_USER +" set picture_version='"+String.valueOf(result.getInt("picture_version")+1)+"', picture='"+picture+"' where id='"+id+"'";
 				int row1=statement.executeUpdate(sql);
 				if(row1==1) {
+					res.setPicture_version(v+1);
 					res.setCode(101);
 					res.setResponse("头像修改成功");
 				}
