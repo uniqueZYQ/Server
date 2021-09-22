@@ -1,6 +1,6 @@
 此项目为WHU信息交互平台的服务器端
 
-使用Mysql+Navicat+Tomcat+Eclipse for JavaEE进行开发，服务器为华为云服务器。
+使用Mysql+Navicat+Tomcat+Eclipse for JavaEE进行开发。
 
 开发者：city ghost
 
